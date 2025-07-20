@@ -1,22 +1,22 @@
-# CHINOOK MUSIC STORE
+<h1 style="text-align: center">CHINOOK MUSIC STORE - DOCUMENTATION</h1>
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Tools and Technologies](#tools-and-technologies)
 - [Features](#features)
-  - [View Albums](#view-albums)
-  - [Album pagination](#album-pagination)
-  - [Sorting the list of albums](#sorting-the-list-albums)
-  - [Searching the database](#searching-the-database)
-  - [View single Album Details](#view-single-album-details)
-  - [Delete an Album and its tracks](#delete-an-album-and-its-tracks)
-  - [Update existing album](#update-existing-album)
-  - [Inserting a New album](#inserting-a-new-album)
+  - [View Albums](#view-Albums)
+  - [Album pagination](#Album-pagination)
+  - [Sorting the list of Albums](#sorting-the-list-Albums)
+  - [Searching the Database](#searching-the-Database)
+  - [View single Album details](#view-single-Album-details)
+  - [Delete an Album and its Tracks](#delete-an-Album-and-its-Tracks)
+  - [Update existing Album](#update-existing-Album)
+  - [Inserting a New Album](#inserting-a-new-Album)
 
 ## Overview
 
-Welcome to the **Chinook Music Store** repository. This project is a **database-driven CRUD application** built to manage an online/digital music store. The Chinook database delivers a rich dataset and structure around which this project is built.
+Welcome to the **Chinook Music Store** repository. This project is a **Database-driven CRUD application** built to allow the Chinook Music Store administrator or staff to manage the catalog/inventory of the store. The Chinook Database delivers a rich dataset and structure around which this project is built.
 
 ![Preview of the Chinook Music Store](img/doc-images/homepage.png)
 
@@ -27,7 +27,7 @@ This project is built using the following tools and technologies:
 - **HTML5** and **CSS3** for the structure and user interface,
 - **JavaScript** for interaction and behaviour,
 - **PHP** for the logic, and
-- **MySQL** for database management.
+- **MySQL** for Database management.
 
 ## Features
 
@@ -35,26 +35,26 @@ As a fully functional CRUD application, the Chinook Music Store web application 
 
 The full scope of all features and functionalites for this project are as follows:
 
-1. View albums
+1. View Albums
 2. Album pagination
-3. Sorting the list of albums
-4. Searching the database
-5. View single Album Details
-6. Delete an Album and its tracks
-7. Update existing album
-8. Inserting a New album
+3. Sorting the list of Albums
+4. Searching the Database
+5. View single Album details
+6. Delete an Album and its Tracks
+7. Update existing Album
+8. Inserting a New Album
 
-### View Albums
+> ### 1. View Albums
 
-When the Chinook Music Store homepage comes up, it shows the title of the web application, button to insert a new album, two forms that allow the user to sort through the list of albums or search for an album or artist. Below the forms, a table that show all the albums in the Chinook Music Store is also displayed.
+When the Chinook Music Store homepage comes up, it shows the title of the web application, a button to insert a new Album, and two forms that allow the user to sort through the list of Albums or search for an Album or artist. Below the forms, a table that displays all Albums in the Chinook Music Store is also displayed.
 
-In this table, the respective colums show the Album titles, the Artist names and actions (view details, update album information, delete album) that the user can carry out to manage these albums.
+In this table, the respective columns show the Album titles, the Artist names, and Actions (view details, update Album information, delete Album) that the user can carry out to manage these Albums.
 
 ![Preview of the Chinook Music Store](img/doc-images/homepage.png)
 
-### Album Pagination
+> ### 2. Album Pagination
 
-The Chinook Music Store database holds information of many albums, over 300 albums and viewing this on a single page is not user friendly with the endless scrolling so as an additional functionality, pagination is implemented for the table results. The user can select a page to load and on clicking the 'Go to Page' button, set of results with respect to that page get loaded.
+The Chinook Music Store Database holds information for over 300 Albums and viewing these on a single page is not user friendly with the seemingly endless scrolling. Hence, as an additional functionality, pagination is implemented for the table results. The user can select what page to load and on clicking the 'Go to Page' button, set of results with respect to that page get loaded.
 
 ![Pagination functionality](img/doc-images/pagination.png)
 
@@ -62,27 +62,27 @@ On selecting page 10 and clicking the 'Go to Page' button, the result shown is a
 
 ![Pagination functionality 2](img/doc-images/page-10.png)
 
-### Sorting the list of albums
+> ### 3. Sorting the list of Albums
 
-To facilitate ease of catalog management, albums and search results can be sorted in different ways. The ways implemented in the web application are as follows:
+To facilitate ease of catalog management, the information displayed using the table can be sorted in different ways. The ways implemented in the web application are as follows:
 
-- Default: Sorts albums by their ID in the database
-- Album Title (Ascending): Sorts albums table by the album titles in ascending order
-- Album Title (Descending): Sorts albums table by the album titles in descending order
-- Artist Name (Ascending): Sorts table by artist names in ascending order
-- Artist Name (Descending): Sorts table by artist names in descending order
+- **Default**: Sorts Albums by their ID in the Database
+- **Album Title (Ascending)**: Sorts Albums table by the Album titles in ascending order
+- **Album Title (Descending)**: Sorts Albums table by the Album titles in descending order
+- **Artist Name (Ascending)**: Sorts table by artist names in ascending order
+- **Artist Name (Descending)**: Sorts table by artist names in descending order
 
-To implement this feature, after selecting an option, the user click the apply button to sort the table based on their choice.
+To implement this feature, after selecting an option, the user simply clicks the 'Apply' button to sort the table based on their choice.
 
 ![Sorting options](img/doc-images/sort.png)
 
-The image below shows the table sorted by the artist names in ascending order.
+The image below shows the table after it has been sorted using the Artist names in ascending order.
 
 ![Sorting example](img/doc-images/sort-name-ascending.png)
 
-### Searching the Database
+> ### 4. Searching the Database
 
-Another functionality implemented in the Chinook Music Store project is one that allows that user to filter through the list of albums in the database based on their search query. To use this feature, the user enters value in the search field as shown below and selects an option, whether to filter/search by Album Title or Artist name and on clicking the Search button, they get their search results.
+Another functionality implemented in the Chinook Music Store project is one that allows that user to filter through the list of Albums in the Database based on their search query. To use this feature, the user can enter value in the search field as shown below and select an option, whether to filter/search by Album Title or Artist name and on clicking the Search button, they get their search results.
 
 ![Searching by artist name](img/doc-images/search.png)
 
@@ -90,21 +90,21 @@ On clicking the search button to search for Albums by Accept, here is the result
 
 ![Sorting options](img/doc-images/search-example.png)
 
-### Viewing Single Album Details
+> ### 5. Viewing Single Album details
 
-Now for each table row, under the actions column, the details button when clicked leads to another page that shows the user all the necessary information about the selected album.
+Now for each table row, under the actions column, there is a 'Details' button which when clicked leads to the page that shows the user all the necessary information about the selected Album.
 
 ![Table row](img/doc-images/table-row.png)
 
-On the details page, it shows the information about the Album like the Album title, Artist name and all the tracks under that album in a table. The table also shows, the track composer, length/duration, size, and unit price.
+On the details page, it shows the information about the Album like the Album title, Artist name and all the Tracks under that Album using a table format. The table also shows, the Track composer, Track length/duration, size, and its Unit Price.
 
-![Album Details](img/doc-images/album-details.png)
+![Album details](img/doc-images/Album-details.png)
 
-From the picture above, we can see the details for the album by AC/DC titled "For Those About To Rock We Salute You".
+From the picture above, we can see the details for the Album by AC/DC titled "For Those About To Rock We Salute You".
 
-### Delete an Album and its tracks
+> ### 6. Delete an Album and its Tracks
 
-To delete an album and its associated tracks, the delete button is available on each table row helps with that. On clicking the button, a popup window comes up for confirmation of the user choice. This is seen in the example below when the delete button is clicked for Album 349. In the popup window, the user knows which album was selected and the associated assist to confirm their decision.
+To delete an Album and its associated Tracks, the 'Delete' button is available on each table row. On clicking the button, a popup window comes up for confirmation of the user's choice. This is seen in the example below when the delete button is clicked for Album 349. In the popup window, the user knows which Album was selected for deletion and its associated Artist. This provides some sort of tracking to know which Album is about to be deleted and confirm user choice.
 
 ![Delete modal](img/doc-images/delete-modal.png)
 
@@ -112,44 +112,44 @@ If the user still goes ahead to click the delete button, another confirmation bl
 
 ![Final delete confirmation](img/doc-images/final-delete-confirmation.png)
 
-On confirming the delete option by selecting the OK button, the album and its tracks get deleted. The artist does not get deleted because that artist might still have another album in the database.
+On confirming the delete option by selecting the OK button, the Album and its Tracks get deleted. The artist does not get deleted because that artist might still have another Album in the Database. At any point between the two confirmations, the user may decide to cancel and the delete process will be halted
 
-### Update existing album
+> ### 7. Update existing Album
 
-Now, when a user wished to change or update the details of an album, the update button in the actions column on the table of albums can be used to do so. On clikcing this button, the user is directed to a page where they can change the details of an album. Some of these details include:
+Now, when a user wishes to change or update the details of an Album, the update button in the actions column on the table of Albums can be used to do so. On clikcing this button, the user is directed to a page where they can update the details of an Album. Some of these details include:
 
 - Album title
 - Artist name
 - Track details
-- Remove an existing track
-- Add a new track to album
+- Remove an existing Track
+- Add a new Track to Album
 
-The image below shows how this works when we attempt to update album by AC/DC titled "For Those About To Rock We Salute You".
+The image below shows how this works when we attempt to update the Album by AC/DC titled "For Those About To Rock We Salute You".
 
 ![Update](img/doc-images/update.png)
 
-### Inserting a New album
+> ### Inserting a New Album
 
-The 'Insert Album' button is used to add a new album to the Chinook Music Store database.
+The 'Insert Album' button is used to add a new Album to the Chinook Music Store Database.
 
-![Insert album button](img/doc-images/insert-album-button.png)
+![Insert Album button](img/doc-images/insert-Album-button.png)
 
-On clicking this button, the user is directed to a page with a form with which they can enter the details of the album they wish to add to the database.
+On clicking this button, the user is directed to a page with a form with which they can enter the details of the Album they wish to add to the Database.
 
 The information the user gets to add inludes:
 
 - Album Title
 - Artist name (the user can select from the list of artists available or enter a new artist name)
-- Tracks for the album
+- Tracks for the Album
 
-![Insert album form](img/doc-images/insert-album.png)
+![Insert Album form](img/doc-images/insert-Album.png)
 
-From the image above, it is can be seen that the default state of the form only displays one (1) available track field. The 'Add Track' button at the bottom section of the form allows the user to add an extra form field which can be used to add a new track detail for the album. If the user decides to remove an extra track, they can use the 'X' button next to the input field as seen below
+From the image above, it is can be seen that the default state of the form only displays one (1) available Track field. The 'Add Track' button at the bottom section of the form allows the user to add an extra form field which can be used to add a new Track detail for the Album. If the user decides to remove an extra Track, they can use the 'X' button next to the input field as seen below
 
-![Insert album form](img/doc-images/insert-album2.png)
+![Insert Album form](img/doc-images/insert-Album2.png)
 
-An extra feature to test how the insert functionality works is the 'Populate Form' button at the bbottom section of the form. Clicking this button populates the form with default album details that includes an Album Title called 'Work of Art' by 'Asake' which includes fourteen (14) tracks.
+An extra feature to test how the insert functionality works is the 'Populate Form' button at the bbottom section of the form. Clicking this button populates the form with default Album details that includes an Album Title called 'Work of Art' by 'Asake' which includes fourteen (14) Tracks.
 
-![Insert album form](img/doc-images/insert-album3.png)
+![Insert Album form](img/doc-images/insert-Album3.png)
 
-After the user may have inputed all the necesary details for an album, they can go ahead to click the Insert Album button to submit the form and add the album as a new entry into the database.
+After the user may have inputed all the necessary details for the Album they want to add, they can go ahead to click the Insert Album button to submit the form and add the Album as a new entry into the Database.
