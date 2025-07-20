@@ -1,0 +1,164 @@
+@import "default.css";
+@import "variables.css";
+@import "table.css";
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 2.5rem;
+
+  h1 {
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+
+    font-size: 6rem;
+  }
+
+  div.back-btn {
+    a {
+      margin: 0;
+    }
+  }
+
+  /* a {
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1.25rem 2rem;
+    cursor: pointer;
+
+    font-family: "Parkinsans", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-style: italic;
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: transform ease-in-out 0.5s;
+    }
+  } */
+}
+
+main {
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+
+      h2,
+      p {
+        margin: 0;
+        text-align: center;
+      }
+
+      h2 {
+        text-transform: uppercase;
+        color: var(--main-text-color);
+      }
+
+      p {
+        max-width: 50rem;
+
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+
+    form {
+      width: 45rem;
+      padding: 2rem;
+      background-color: rgba(24, 24, 27, 1);
+      border: 0.1rem solid rgba(55, 65, 81, 1);
+      border-radius: 1rem;
+      display: grid;
+      gap: 1.25rem;
+
+      /* color: var(--main-text-color); */
+
+      div.form_control {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.5rem;
+
+        label,
+        input {
+          grid-column: span 8;
+          font-size: 1.6rem;
+        }
+
+        label {
+          text-transform: capitalize;
+          color: var(--secondary-text-color);
+        }
+
+        input {
+          background-color: transparent;
+          border: 0.1rem solid rgba(55, 65, 81, 1);
+          border-radius: 0.5rem;
+          padding: 1.5rem 1rem;
+
+          font-family: "Parkinsans", sans-serif;
+          color: var(--main-text-color);
+
+          &::placeholder {
+            color: rgba(144, 156, 175, 1);
+          }
+        }
+      }
+
+      div.btn_control {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+
+        button.btn_insert {
+          grid-column: span 2;
+        }
+      }
+
+      div.track_control {
+        input {
+          grid-column: span 7;
+        }
+
+        button {
+          margin-top: 0;
+          display: grid;
+          place-items: center;
+          background-color: transparent;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+
+          img {
+            width: 3.2rem;
+            height: 3.2rem;
+          }
+        }
+      }
+
+      button {
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
