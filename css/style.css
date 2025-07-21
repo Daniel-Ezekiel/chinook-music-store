@@ -9,33 +9,32 @@ header {
   align-items: center;
   gap: 2rem;
   padding: 3rem 2.5rem;
+}
 
-  h1 {
-    margin: 0 auto;
-    text-align: center;
-    text-transform: uppercase;
+header h1 {
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
 
-    font-size: 6rem;
-  }
+  font-size: 4.5rem;
+}
 
-  a {
-    border: none;
-    border-radius: 0.5rem;
-    padding: 1.25rem 2rem;
-    cursor: pointer;
+header a {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1.25rem 2rem;
+  cursor: pointer;
 
-    font-family: "Parkinsans", sans-serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    font-style: italic;
-    text-decoration: none;
-    color: #000;
+  font-family: "Parkinsans", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  text-decoration: none;
+  color: #000;
+}
 
-    &:hover {
-      transform: scale(1.1);
-      transition: transform ease-in-out 0.5s;
-    }
-  }
+header a:hover {
+  transform: scale(1.1);
+  transition: transform ease-in-out 0.5s;
 }
 
 div.top-container {
@@ -44,80 +43,82 @@ div.top-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-  div.back-btn {
-    a {
-      margin-top: 0;
-    }
-  }
+div.back-btn a {
+  margin-top: 0;
+}
 
-  div.table_actions {
-    width: 100%;
-    justify-self: end;
-    display: flex;
-    justify-content: space-between;
-    margin: 1.5rem 0;
+div.table_actions {
+  width: 100%;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+}
 
-    .form_sort,
-    .form_search {
-      background-color: rgba(24, 24, 27, 1);
-      border: 0.1rem solid rgba(55, 65, 81, 1);
-      border-radius: 0.5rem;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.25rem;
-    }
+.form_sort,
+.form_search {
+  background-color: rgba(24, 24, 27, 1);
+  border: 0.1rem solid rgba(55, 65, 81, 1);
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  display: grid;
+  gap: 1.25rem;
+}
 
-    .form_search {
-      margin-left: auto;
-    }
+.form_sort .form_control {
+  height: 100%;
+  display: flex;
+  /* align-items: stretch; */
+}
 
-    div.form_control {
-      height: 100%;
-      display: flex;
-      /* align-items: stretch; */
+.form_search .form_control {
+  width: 100%;
+  display: flex;
+  /* grid-template-columns: auto auto; */
+}
 
-      div {
-        display: grid;
+div.table_actions div label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+}
 
-        label {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--secondary-text-color);
-        }
-      }
+div.table_actions form input,
+div.table_actions form select {
+  background-color: rgba(24, 24, 27, 1);
+  border: 0.1rem solid rgba(55, 65, 81, 1);
 
-      input,
-      select {
-        padding: 0 1.2rem;
-        background-color: rgba(24, 24, 27, 1);
-        border: 0.1rem solid rgba(55, 65, 81, 1);
+  font-family: "Parkinsans", sans-serif;
+  font-size: 1.6rem;
+  color: var(--main-text-color);
+}
 
-        font-family: "Parkinsans", sans-serif;
-        font-size: 1.6rem;
-        color: var(--main-text-color);
-      }
+select#sort {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+}
 
-      select {
-        border-radius: 0.5rem 0 0 0.5rem;
+.form_search select,
+.form_search input {
+  padding: 1.25rem;
+}
 
-        option {
-          padding: 2rem 0;
-        }
-      }
+.form_search select {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
 
-      input {
-        min-width: 25rem;
-        border-radius: 0 0.5rem 0.5rem 0;
+.form_search input {
+  width: inherit;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
 
-        &::placeholder {
-          color: rgba(144, 156, 175, 1);
-        }
-      }
-    }
-  }
+.form_search input::placeholder {
+  color: rgba(144, 156, 175, 1);
 }
 
 .form_pagination {
@@ -126,22 +127,22 @@ div.top-container {
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
+}
 
-  select {
-    border: none;
-    border-radius: 0.5rem;
-    padding: 1.25rem 2rem;
-    background-color: var(--secondary-bg-color);
-    color: var(--main-text-color);
+.form_pagination select {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1.25rem 2rem;
+  background-color: var(--secondary-bg-color);
+  color: var(--main-text-color);
 
-    font-family: "Parkinsans", sans-serif;
-    font-weight: 900;
-    font-size: 1.8rem;
-  }
+  font-family: "Parkinsans", sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+}
 
-  .form_btn {
-    color: var(--main-text-color);
-  }
+.form_pagination .form_btn {
+  color: var(--main-text-color);
 }
 
 /* Delete modal styling */
@@ -156,49 +157,49 @@ div.modal_overlay {
 
   display: none;
   place-items: center;
+}
 
-  div.modal {
-    max-width: 48rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    border-radius: 1rem;
-    padding: 5rem 3rem;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
-      rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
-    background-color: var(--secondary-bg-color);
-    z-index: 1;
+div.modal {
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 1rem;
+  padding: 5rem 3rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  background-color: var(--secondary-bg-color);
+  z-index: 1;
+}
 
-    h5,
-    p {
-      margin: 0;
-      text-align: center;
-    }
+div.modal h5,
+div.modal p {
+  margin: 0;
+  text-align: center;
+}
 
-    h5 {
-      font-size: 3rem;
-      font-weight: 900;
-    }
+div.modal h5 {
+  font-size: 3rem;
+  font-weight: 900;
+}
 
-    span {
-      font-weight: 700;
-    }
+div.modal span {
+  font-weight: 700;
+}
 
-    form {
-      margin-top: 2.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: row;
-      padding: 0;
-      gap: 3rem;
+div.modal form {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0;
+  gap: 3rem;
+}
 
-      .delete-btn {
-        background-color: #dc143c;
-        color: var(--main-text-color);
-      }
-    }
-  }
+div.modal .delete-btn {
+  background-color: #dc143c;
+  color: var(--main-text-color);
 }
 
 div.active {

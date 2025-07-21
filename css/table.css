@@ -1,72 +1,74 @@
+.table-container {
+  margin-top: 2rem;
+  width: 90%;
+  overflow-x: scroll;
+  border-radius: 0.875rem;
+}
+
 table {
-  width: 85%;
   background-color: var(--secondary-bg-color);
   border-collapse: collapse;
   overflow: hidden;
   border: 0.1rem solid var(--secondary-text-color);
   border-radius: 0.875rem;
+}
 
-  thead {
-    font-size: 2rem;
+thead {
+  font-size: 2rem;
+}
 
-    th {
-      padding: 2.25rem 0.5rem;
-      border-bottom: 0.1rem solid var(--secondary-text-color);
+th {
+  padding: 2.25rem 0.5rem;
+  border-bottom: 0.1rem solid var(--secondary-text-color);
 
-      font-weight: 700;
-      text-transform: uppercase;
-      /* color: #fff; */
-    }
-  }
+  font-weight: 700;
+  text-transform: uppercase;
+  /* color: #fff; */
+}
 
-  tbody {
-    tr {
-      :nth-child(even) {
-        background-color: var(--main-bg-color);
-      }
+td:nth-child(even) {
+  background-color: var(--main-bg-color);
+}
 
-      td {
-        border-bottom: 0.1rem solid var(--secondary-text-color);
-        padding: 2.5rem;
-        text-align: center;
+td {
+  border-bottom: 0.1rem solid var(--secondary-text-color);
+  padding: 2.5rem;
+  text-align: center;
+}
 
-        &:first-child {
-          width: 3rem;
-        }
+td:first-child {
+  width: 3rem;
+}
 
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 1.2rem 2rem;
-          border-radius: 0.5rem;
+td a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  border-radius: 0.5rem;
 
-          font-weight: 600;
-          text-decoration: none;
-          color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
 
-          &:hover {
-            transform: scale(1.1);
-            transition: transform ease-in-out 0.4s;
-          }
-        }
+td a:hover {
+  transform: scale(1.1);
+  transition: transform ease-in-out 0.4s;
+}
 
-        .delete-btn {
-          background-color: transparent;
-          color: #dc143c;
-          border: 0.25rem solid #dc143c;
-        }
-      }
+td .delete-btn {
+  background-color: transparent;
+  color: #dc143c;
+  border: 0.25rem solid #dc143c;
+}
 
-      td.actions-cell {
-        width: 42rem;
+td.actions-cell {
+  width: 42rem;
+}
 
-        div {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
-        }
-      }
-    }
-  }
+td.actions-cell div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }

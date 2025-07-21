@@ -15,19 +15,19 @@ body {
   background-color: var(--main-bg-color);
 
   font-family: "Parkinsans", sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--main-text-color);
 }
 
 main {
   margin: 2rem 0;
   margin-bottom: 4rem;
+}
 
-  div.bottom-container {
-    display: grid;
-    place-items: center;
-    margin: auto;
-  }
+div.bottom-container {
+  display: grid;
+  place-items: center;
+  margin: auto;
 }
 
 button {
@@ -37,27 +37,25 @@ button {
   cursor: pointer;
 
   font-family: "Parkinsans", sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
-
-  &:hover {
-    transform: scale(1.1);
-    transition: transform ease-in-out 0.5s;
-  }
 }
 
-div.back-btn {
-  a {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.875rem;
+button:hover {
+  transform: scale(1.1);
+  transition: transform ease-in-out 0.5s;
+}
 
-    font-weight: 600;
-    font-style: italic;
-    color: var(--secondary-text-color);
-  }
+div.back-btn a {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.875rem;
+
+  font-weight: 600;
+  font-style: italic;
+  color: var(--secondary-text-color);
 }
 
 p.message {

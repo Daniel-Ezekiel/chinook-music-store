@@ -105,51 +105,53 @@
             </div>
         </div>
         <div class="bottom-container">
-            <table>
-                <thead class="gradient-bg3">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Artist</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        while($album = $albums->fetch_assoc()){
-                            echo "<tr>"; 
-                            echo "<td>";
-                                echo $album["AlbumId"];
-                            echo "</td>";
+            <div class="table-container">
+                <table>
+                    <thead class="gradient-bg3">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Artist</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            while($album = $albums->fetch_assoc()){
+                                echo "<tr>"; 
+                                echo "<td>";
+                                    echo $album["AlbumId"];
+                                echo "</td>";
 
-                            echo "<td>";
-                                echo $album["Title"];
-                            echo "</td>";
+                                echo "<td>";
+                                    echo $album["Title"];
+                                echo "</td>";
 
-                            echo "<td>";
-                                echo $album["ArtistName"];
-                            echo "</td>";
+                                echo "<td>";
+                                    echo $album["ArtistName"];
+                                echo "</td>";
 
-                            echo "<td class=\"actions-cell\">";
-                                echo "<div>";
-                                        echo "<a class=\"gradient-bg3\" href=\"details.php?id=" . $album["AlbumId"] . "\">";
-                                        echo "Details</a>";
+                                echo "<td class=\"actions-cell\">";
+                                    echo "<div>";
+                                            echo "<a class=\"gradient-bg3\" href=\"details.php?id=" . $album["AlbumId"] . "\">";
+                                            echo "Details</a>";
 
-                                        echo "<a class=\"gradient-bg3\" href=\"insert-album.php?id=" . $album["AlbumId"] . "\">";
-                                        echo "Update</a>";
+                                            echo "<a class=\"gradient-bg3\" href=\"insert-album.php?id=" . $album["AlbumId"] . "\">";
+                                            echo "Update</a>";
 
-                                        echo "<button type=\"button\" class=\"action delete-btn" 
-                                            . "\" data-album-Id=\"" . $album["AlbumId"]
-                                            . "\" data-album-Title=\"" . $album["Title"]
-                                            . "\" data-artist-Name=\"" . $album["ArtistName"]
-                                        . "\">Delete</button>";
-                                echo "</div>";
-                            echo "</td>";
-                            echo "</tr>";   
-                        }
-                    ?>
-                </tbody>
-            </table>
+                                            echo "<button type=\"button\" class=\"action delete-btn" 
+                                                . "\" data-album-Id=\"" . $album["AlbumId"]
+                                                . "\" data-album-Title=\"" . $album["Title"]
+                                                . "\" data-artist-Name=\"" . $album["ArtistName"]
+                                            . "\">Delete</button>";
+                                    echo "</div>";
+                                echo "</td>";
+                                echo "</tr>";   
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             
             <div>
                 <form method="get" class="form_pagination">                    
