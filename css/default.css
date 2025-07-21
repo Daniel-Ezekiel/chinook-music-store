@@ -1,8 +1,8 @@
 @import "variables.css";
 @import url("https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap");
-/* * {
-  all: unset;
-} */
+* {
+  box-sizing: border-box;
+}
 
 html {
   font-size: 62.5%;
@@ -60,4 +60,11 @@ div.back-btn a {
 
 p.message {
   margin-top: 5rem;
+}
+
+@media screen and (min-width: 1280px) {
+  body,
+  button {
+    font-size: 1.8rem;
+  }
 }

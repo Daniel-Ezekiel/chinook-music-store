@@ -48,64 +48,73 @@
         ?>
         <!-- <button class="gradient-bg2">Insert Album</button> -->
 
-        <div class="back-btn">
-            <a href=<?php echo "$prev_page"; ?>>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path stroke="#d1d5db" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.57 5.93L3.5 12l6.07 6.07M20.5 12H3.67"></path></svg>
-                Back
-            </a>
-        </div>
+        
     </header>
 
     <main>
+        <div class="top-container">
+            <div class="back-btn">
+                <a href=<?php echo "$prev_page"; ?>>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path stroke="#d1d5db" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.57 5.93L3.5 12l6.07 6.07M20.5 12H3.67"></path></svg>
+                    Back
+                </a>
+            </div>
+
+            <div class="update-btn">
+                <a class="gradient-bg3" href="<?php echo "insert-album.php?id=$album_id" ?>">Update Album</a>
+            </div>
+        </div>
         <div class="bottom-container">
-            <table>
-                <thead class="gradient-bg3">
-                    <tr>
-                        <th>ID</th>
-                        <th>Track Name</th>
-                        <th>Composer</th>
-                        <th>Duration(m:s)</th>
-                        <th>Size(MB)</th>
-                        <th>Unit Price(£)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        while($track = $tracks->fetch_assoc()){
-                            echo "<tr>"; 
-                                echo "<td>";
-                                    echo $track["TrackId"];
-                                echo "</td>";
+            <div class="table-container">
+                <table>
+                    <thead class="gradient-bg3">
+                        <tr>
+                            <th>ID</th>
+                            <th>Track Name</th>
+                            <th>Composer</th>
+                            <th>Duration(m:s)</th>
+                            <th>Size(MB)</th>
+                            <th>Unit Price(£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            while($track = $tracks->fetch_assoc()){
+                                echo "<tr>"; 
+                                    echo "<td>";
+                                        echo $track["TrackId"];
+                                    echo "</td>";
 
-                                echo "<td>";
-                                    echo $track["Name"];
-                                echo "</td>";
+                                    echo "<td>";
+                                        echo $track["Name"];
+                                    echo "</td>";
 
-                                echo "<td>";
-                                    echo $track["Composer"] !== "" ? $track["Composer"] : "None";
-                                echo "</td>";
+                                    echo "<td>";
+                                        echo $track["Composer"] !== "" ? $track["Composer"] : "None";
+                                    echo "</td>";
 
-                                echo "<td>";
-                                    $duration_mins = floor(intval($track["Milliseconds"]) / (1000 * 60));
-                                    $duration_secs = intval($track["Milliseconds"]) % 60;
-                                    $duration = "$duration_mins:" . str_pad($duration_secs, 2, "0", STR_PAD_LEFT);
-                                    echo $duration;
-                                echo "</td>";
+                                    echo "<td>";
+                                        $duration_mins = floor(intval($track["Milliseconds"]) / (1000 * 60));
+                                        $duration_secs = intval($track["Milliseconds"]) % 60;
+                                        $duration = "$duration_mins:" . str_pad($duration_secs, 2, "0", STR_PAD_LEFT);
+                                        echo $duration;
+                                    echo "</td>";
 
-                                echo "<td>";
-                                    $size_in_mb = intval($track["Bytes"]) / (1024 * 1024);
-                                    $size_formatted = round($size_in_mb, 2);
-                                    echo $size_formatted;
-                                echo "</td>";
+                                    echo "<td>";
+                                        $size_in_mb = intval($track["Bytes"]) / (1024 * 1024);
+                                        $size_formatted = round($size_in_mb, 2);
+                                        echo $size_formatted;
+                                    echo "</td>";
 
-                                echo "<td>";
-                                    echo $track["UnitPrice"];
-                                echo "</td>";
-                            echo "</tr>";   
-                        }
-                    ?>
-                </tbody>
-            </table>
+                                    echo "<td>";
+                                        echo $track["UnitPrice"];
+                                    echo "</td>";
+                                echo "</tr>";   
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
     <?php $conn->close() ?>

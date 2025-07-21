@@ -39,7 +39,7 @@ header a:hover {
 
 div.top-container {
   margin: 0 auto;
-  width: 85%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +71,7 @@ div.table_actions {
 
 .form_sort .form_control {
   height: 100%;
-  display: flex;
+  display: grid;
   /* align-items: stretch; */
 }
 
@@ -81,7 +81,7 @@ div.table_actions {
   /* grid-template-columns: auto auto; */
 }
 
-div.table_actions div label {
+.form_sort .form_control div label {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--secondary-text-color);
@@ -205,4 +205,50 @@ div.modal .delete-btn {
 div.active {
   display: grid;
   transition: all ease-in-out 0.4s;
+}
+
+@media screen and (min-width: 768px) {
+  .form_sort,
+  .form_search {
+    grid-template-columns: 80% auto;
+  }
+
+  .form_sort button {
+    align-self: end;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .top-container {
+    max-width: 85%;
+  }
+
+  div.table_actions {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .form_sort,
+  .form_search {
+    grid-template-columns: auto auto;
+  }
+
+  select#sort {
+    padding: 0 1.25rem;
+  }
+
+  .form_sort button {
+    align-self: unset;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  header h1 {
+    font-size: 6rem;
+  }
+
+  .form_search input {
+    width: 25rem;
+  }
 }

@@ -9,156 +9,139 @@ header {
   align-items: center;
   gap: 2rem;
   padding: 3rem 2.5rem;
-
-  h1 {
-    margin: 0 auto;
-    text-align: center;
-    text-transform: uppercase;
-
-    font-size: 6rem;
-  }
-
-  div.back-btn {
-    a {
-      margin: 0;
-    }
-  }
-
-  /* a {
-    border: none;
-    border-radius: 0.5rem;
-    padding: 1.25rem 2rem;
-    cursor: pointer;
-
-    font-family: "Parkinsans", sans-serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    font-style: italic;
-    text-decoration: none;
-    color: #000;
-
-    &:hover {
-      transform: scale(1.1);
-      transition: transform ease-in-out 0.5s;
-    }
-  } */
 }
 
-main {
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
+h1 {
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
 
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
+  font-size: 4.5rem;
+}
 
-      h2,
-      p {
-        margin: 0;
-        text-align: center;
-      }
+div a {
+  margin: 0;
+}
 
-      h2 {
-        text-transform: uppercase;
-        color: var(--main-text-color);
-      }
+main div {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
 
-      p {
-        max-width: 50rem;
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
 
-        span {
-          font-weight: 600;
-        }
-      }
-    }
+h2,
+p {
+  margin: 0;
+  text-align: center;
+}
 
-    form {
-      width: 45rem;
-      padding: 2rem;
-      background-color: rgba(24, 24, 27, 1);
-      border: 0.1rem solid rgba(55, 65, 81, 1);
-      border-radius: 1rem;
-      display: grid;
-      gap: 1.25rem;
+h2 {
+  text-transform: uppercase;
+  color: var(--main-text-color);
+}
 
-      /* color: var(--main-text-color); */
+p {
+  max-width: 50rem;
+}
 
-      div.form_control {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 0.5rem;
+p span {
+  font-weight: 600;
+}
 
-        label,
-        input {
-          grid-column: span 8;
-          font-size: 1.6rem;
-        }
+form {
+  padding: 2rem;
+  background-color: rgba(24, 24, 27, 1);
+  border: 0.1rem solid rgba(55, 65, 81, 1);
+  border-radius: 1rem;
+  display: grid;
+  gap: 1.25rem;
+}
 
-        label {
-          text-transform: capitalize;
-          color: var(--secondary-text-color);
-        }
+div.form_control {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
 
-        input {
-          background-color: transparent;
-          border: 0.1rem solid rgba(55, 65, 81, 1);
-          border-radius: 0.5rem;
-          padding: 1.5rem 1rem;
+div.form_control label,
+div.form_control input {
+  grid-column: span 8;
+  font-size: 1.6rem;
+}
 
-          font-family: "Parkinsans", sans-serif;
-          color: var(--main-text-color);
+div.form_control label {
+  text-transform: capitalize;
+  color: var(--secondary-text-color);
+}
 
-          &::placeholder {
-            color: rgba(144, 156, 175, 1);
-          }
-        }
-      }
+div.form_control input {
+  background-color: transparent;
+  border: 0.1rem solid rgba(55, 65, 81, 1);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
 
-      div.btn_control {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+  font-family: "Parkinsans", sans-serif;
+  color: var(--main-text-color);
+}
 
-        button.btn_insert {
-          grid-column: span 2;
-        }
-      }
+div.form_control input&::placeholder {
+  color: rgba(144, 156, 175, 1);
+}
 
-      div.track_control {
-        input {
-          grid-column: span 7;
-        }
+div.btn_control {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+  gap: 1.5rem;
+}
 
-        button {
-          margin-top: 0;
-          display: grid;
-          place-items: center;
-          background-color: transparent;
-          cursor: pointer;
+button.btn_insert {
+  grid-column: span 2;
+}
 
-          &:hover {
-            transform: scale(1.05);
-          }
+div.track_control input {
+  grid-column: span 7;
+}
 
-          img {
-            width: 3.2rem;
-            height: 3.2rem;
-          }
-        }
-      }
+div.track_control button {
+  margin-top: 0;
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+  cursor: pointer;
+}
 
-      button {
-        &:hover {
-          transform: scale(1.05);
-        }
-      }
-    }
+div.track_control button:hover {
+  transform: scale(1.05);
+}
+
+div.track_control button img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+@media screen and (min-width: 640px) {
+  form {
+    width: 48rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  h1 {
+    font-size: 6rem;
   }
 }
