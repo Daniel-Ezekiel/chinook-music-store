@@ -10,7 +10,8 @@
     <?php 
         header('Content-Type: text/html; charset=ISO-8859-1');
 
-        $prev_page = $_SERVER['HTTP_REFERER'];
+        $prev_page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php";
+
 
         $host = "localhost";
         $user = "root";
@@ -22,7 +23,7 @@
         if(isset($_GET["id"])){
             $album_id = $_GET["id"];
             
-            // $sql = "SELECT tracks.*, albums.Title as AlbumTitle FROM tracks JOIN albums ON $album_id = albums.AlbumId JOIN artists ON albums.ArtistId = artists.ArtistId WHERE tracks.AlbumId = $album_id";
+            
             $sql_album = "SELECT albums.Title as AlbumTitle, artists.Name as ArtistName from albums JOIN artists ON albums.ArtistId = artists.ArtistId WHERE albums.AlbumId = $album_id";
             $sql = "SELECT * FROM tracks WHERE AlbumId = $album_id";
 
@@ -61,7 +62,10 @@
             </div>
 
             <div class="update-btn">
-                <a class="gradient-bg3" href="<?php echo "insert-album.php?id=$album_id" ?>">Update Album</a>
+                <?php
+                    echo "<a class=\"gradient-bg3\" href=\"/project/insert-album.php?id=" . $album_id . "\">";
+                    echo "Update Album</a>";
+                ?>
             </div>
         </div>
         <div class="bottom-container">

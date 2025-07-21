@@ -7,12 +7,14 @@
     <title>Insert Album</title>
 </head>
 <body>
-    <?php        
+    <?php    
+        // This line fixes issues with unrecognised characters.   
         header('Content-Type: text/html; charset=ISO-8859-1');
 
-        $prev_page = $_SERVER['HTTP_REFERER'] ?? "index.php";
-        $operation;
+        // Get the previous page URL for routing purposes on the back button
+        $prev_page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php";
 
+        // Setting up the connection for this page
         $host = "localhost";
         $user = "root";
         $password = "";
@@ -20,59 +22,65 @@
 
         $conn = new mysqli($host, $user, $password, $dbname);
 
-        // Get a list of all the artisits for the artist name dropdown
+        // Query to get a list of all the artists in the DB for the artist name dropdown
         $sql_allArtists = "SELECT ArtistId, Name as ArtistName FROM artists ORDER BY Name ASC";
         $artists = $conn->query($sql_allArtists);
 
+        // Handle getting album details to populate form fields in preparation for updating the selected album
         if($_SERVER["REQUEST_METHOD"] == "GET"){
             if(isset($_GET["id"])){
-                $operation = "update";
+                // Grab album id from GET query parameter
                 $album_id = explode("-", $_GET["id"])[0];
 
                 $album_title;
                 $artist_name;
                 $track1_title;
 
+                // Query that retrieves an album based on the id for updating
                 $sql_album = "SELECT albums.Title as AlbumTitle, artists.Name as ArtistName from albums JOIN artists ON albums.ArtistId = artists.ArtistId WHERE albums.AlbumId = $album_id";
+                // Query that retrieves the tracks associated with that album
                 $sql_tracks = "SELECT * FROM tracks WHERE AlbumId = $album_id";
 
                 $album_details = $conn->query($sql_album);
                 $tracks = $conn->query($sql_tracks);
 
+                // Storing the album title and artist name with which to populate the respective form fields
                 while($album_detail = $album_details->fetch_assoc()){
                     $album_title = $album_detail["AlbumTitle"];
                     $artist_name = $album_detail["ArtistName"];
                 }
 
                 $retrieved_tracks = [];
-                // using this loop, to add each $track which is an associative array into another array of all tracks
+                // using this loop, to add each $track which is an associative array into another array of all tracks called $retrieved_tracks
                 while($track = $tracks->fetch_assoc()){
                     array_push($retrieved_tracks, $track);
                 }
+                // storing other tracks after track 1. i.e track 2 and so on...
                 $other_tracks = array_slice($retrieved_tracks, 1);
-                // print_r($other_tracks);
             }
         }
 
+        // Handle inserting/updating a new album in the chinook database
         if($_SERVER["REQUEST_METHOD"] == "POST"){
+            // Grabbing the album title and artist name from the POST parameters
             $album_title = $_POST["album-title"];
             $artist_name = $_POST["artist-name"];
+            // Grabbing the list of all tracks from the POST parameters
             $all_tracks = array_slice($_POST, 2, null, true);
 
+            // Handle update request using the album ID
             if(isset($_GET["id"])){
                 $album_id = explode("-", $_GET["id"])[0];
 
-                // Check if artist exists in DB, then dettermine id based on outcome of conditional
+                /*
+                    Check whether artist exists in database. If they exist, upda
+                */
                 $sql_selectArtist = "SELECT ArtistId from artists WHERE Name = \"$artist_name\"";
                 $artists =  $conn->query($sql_selectArtist);
                 if($artists->num_rows){
                     while($artist = $artists->fetch_assoc()){
                         $artist_id = $artist["ArtistId"];
                     }
-                
-                    $sql_updateArtist = "UPDATE artists SET Name = \"$artist_name\" WHERE ArtistId = \"$artist_id\"";
-                    // echo "<pre>$sql_updateArtist</pre>";
-                    $conn->query($sql_updateArtist);
                 }else{
                     // Get the current maximum ArtistId
                     $sql_getMaxId = "SELECT MAX(ArtistId) AS max_id FROM artists";
@@ -133,7 +141,7 @@
                 }
 
                 header("Location: details.php/?id=$album_id");
-            }else {                
+            }else {  // Handle insert request if new album information              
                 $artists_count;
                 $artist_id;
                 $album_id;
@@ -145,7 +153,7 @@
                 $new_album_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
                 $album_id = $new_album_id;
 
-                // Check if artist exists in DB, then dettermine id based on outcome of conditional
+                // Check if artist exists in DB, then determine id based on outcome of conditional
                 $sql_selectArtist = "SELECT ArtistId from artists WHERE Name = \"$artist_name\"";
                 $artists =  $conn->query($sql_selectArtist);
                 if($artists->num_rows){

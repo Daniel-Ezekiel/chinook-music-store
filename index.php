@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php 
+        // THis line fixes issues with unrecognised characters.
         header('Content-Type: text/html; charset=ISO-8859-1');
 
         // Pagination setup on each page load
@@ -18,6 +19,7 @@
         }
         $page_offset = ($curr_page - 1) * 35;
 
+        // Getting the parameters with which to sort the results for the table
         if(isset($_GET["sort"])){
             $sort_conditions = explode("-", $_GET["sort"]);
             $sort_tag = $sort_conditions[0];
@@ -36,9 +38,9 @@
         // setting up the connection
         $conn = new mysqli($host, $user, $password, $dbname);
 
-        // sql query to select all rows to determine the max number of pages
+        // sql query to select all rows in database for determining the max number of pages
         $sql_unformatted = "SELECT albums.AlbumId, albums.Title, artists.Name FROM albums JOIN artists ON albums.ArtistId = artists.ArtistId";
-        // sql query to limit the number of rows to 35
+        // sql query to limit the number of rows in the table to 35 for pagination purposes
         $sql_formatted = "SELECT albums.AlbumId, albums.Title, albums.ArtistId, artists.Name as ArtistName FROM albums JOIN artists ON albums.ArtistId = artists.ArtistId ORDER BY $sort_tag $sort_type LIMIT $row_count OFFSET $page_offset";
         
         // linking the connection to the sql query to make the request
@@ -46,22 +48,21 @@
         // getting the total count of all rows and calculating the number of pages
         $total_rows = $conn->query($sql_unformatted)->num_rows;
         $total_pages = ceil($total_rows / $row_count);
-        // echo $total_pages;
-    ?>
 
-    <!-- PHP Code to handle album deletion -->
-    <?php 
+        // PHP Code to handle album deletion
         if($_SERVER["REQUEST_METHOD"] == "POST"){
+            // Getting the album id to setup the deletion task
             $album_id = $_POST["AlbumId"];
 
-            // echo $album_id;
             // query to delete album
             $sql_delete_album = "DELETE FROM albums WHERE AlbumId = $album_id";
+            // query to delete tracks for the selected album
             $sql_delete_albumTracks = "DELETE FROM tracks WHERE AlbumId = $album_id";
 
             $conn->query($sql_delete_album);
             $conn->query($sql_delete_albumTracks);
 
+            // Redirect to the page containing the deleted album
             header("Location: ?page=$curr_page");
         }
     ?>
@@ -193,6 +194,9 @@
 
 
     <script defer src="/project/js/script.js"></script>
-    <?php $conn->close(); ?>
+    <?php 
+        // Closing the connection
+        $conn->close(); 
+    ?>
 </body>
 </html>
