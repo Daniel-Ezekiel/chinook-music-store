@@ -77,7 +77,7 @@
                 </a>
             </div>
 
-            <div class="table_actions">
+            <div class="table_actions search_page">
                 <form method="get" class="form_search">
                     <div class="form_control">
                         <select name="category" id="category">
@@ -93,72 +93,74 @@
         </div>
 
         <div class="bottom-container">
-            <?php 
-                if($total_pages <= 0){
-                    echo "<p class=\"message\">No results to show</p>";
-                }else{
-                    echo "<table>";
-                        echo "<thead class=\"gradient-bg3\">";
-                            echo "<tr>";
-                                echo "<th>ID</th>";
-                                echo "<th>Title</th>";
-                                echo "<th>Artist</th>";
-                                echo "<th>Actions</th>";
-                            echo "</tr>";
-                        echo "</thead>";
-                        echo "<tbody>";
-                            while($album = $albums->fetch_assoc()){
-                                echo "<tr>"; 
-                                    echo "<td>";
-                                        echo $album["AlbumId"];
-                                    echo "</td>";
+           <div class="table-container">
+                 <?php 
+                    if($total_pages <= 0){
+                        echo "<p class=\"message\">No results to show</p>";
+                    }else{
+                        echo "<table>";
+                            echo "<thead class=\"gradient-bg3\">";
+                                echo "<tr>";
+                                    echo "<th>ID</th>";
+                                    echo "<th>Title</th>";
+                                    echo "<th>Artist</th>";
+                                    echo "<th>Actions</th>";
+                                echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
+                                while($album = $albums->fetch_assoc()){
+                                    echo "<tr>"; 
+                                        echo "<td>";
+                                            echo $album["AlbumId"];
+                                        echo "</td>";
 
-                                    echo "<td>";
-                                        echo $album["Title"];
-                                    echo "</td>";
+                                        echo "<td>";
+                                            echo $album["Title"];
+                                        echo "</td>";
 
-                                    echo "<td>";
-                                        echo $album["ArtistName"];
-                                    echo "</td>";
+                                        echo "<td>";
+                                            echo $album["ArtistName"];
+                                        echo "</td>";
 
-                                    echo "<td class=\"actions-cell\">";
-                                    echo "<div>";
-                                                echo "<a class=\"gradient-bg3\" href=\"details.php?id=" . $album["AlbumId"] . "\">";
-                                                echo "Details</a>";
+                                        echo "<td class=\"actions-cell\">";
+                                        echo "<div>";
+                                                    echo "<a class=\"gradient-bg3\" href=\"details.php?id=" . $album["AlbumId"] . "\">";
+                                                    echo "Details</a>";
 
-                                                echo "<a class=\"gradient-bg3\" href=\"insert-album.php?id=" . $album["AlbumId"] . "\">";
-                                                echo "Update</a>";
+                                                    echo "<a class=\"gradient-bg3\" href=\"insert-album.php?id=" . $album["AlbumId"] . "\">";
+                                                    echo "Update</a>";
 
-                                                echo "<button type=\"button\" class=\"action delete-btn" 
-                                                    . "\" data-album-Id=\"" . $album["AlbumId"]
-                                                    . "\" data-album-Title=\"" . $album["Title"]
-                                                    . "\" data-artist-Name=\"" . $album["ArtistName"]
-                                                . "\">Delete</button>";
-                                    echo "</div>";
-                                    echo "</td>";
-                                echo "</tr>";   
-                            }                            
-                        echo "</tbody>";
-                    echo "</table>";
-                
-                    echo "<div>";
-                        echo "<form method=\"get\" class=\"form_pagination\">";
-                            echo "<input type=\"hidden\" name=\"category\" value=\"$category\">";
+                                                    echo "<button type=\"button\" class=\"action delete-btn" 
+                                                        . "\" data-album-Id=\"" . $album["AlbumId"]
+                                                        . "\" data-album-Title=\"" . $album["Title"]
+                                                        . "\" data-artist-Name=\"" . $album["ArtistName"]
+                                                    . "\">Delete</button>";
+                                        echo "</div>";
+                                        echo "</td>";
+                                    echo "</tr>";   
+                                }                            
+                            echo "</tbody>";
+                        echo "</table>";
+                    
+                        echo "<div>";
+                            echo "<form method=\"get\" class=\"form_pagination\">";
+                                echo "<input type=\"hidden\" name=\"category\" value=\"$category\">";
 
-                            echo "<input type=\"hidden\" name=\"value\" value=\"$value_unformatted\">";
+                                echo "<input type=\"hidden\" name=\"value\" value=\"$value_unformatted\">";
 
-                            echo "<select name=\"page\" id=\"page\">";
-                                for($i = 1; $i <= $total_pages; $i++){
-                                    $is_selected = $i == $curr_page ? "selected" : "";
-                                    echo "<option value=\"$i\" $is_selected >$i</option>";
-                                }
-                            echo "</select>";
-                                
-                            echo "<button type=\"submit\" class=\"gradient-bg3 form_btn\">Go to Page</button>";
-                        echo "</form>";
-                    echo "</div>";
-                }
-            ?>
+                                echo "<select name=\"page\" id=\"page\">";
+                                    for($i = 1; $i <= $total_pages; $i++){
+                                        $is_selected = $i == $curr_page ? "selected" : "";
+                                        echo "<option value=\"$i\" $is_selected >$i</option>";
+                                    }
+                                echo "</select>";
+                                    
+                                echo "<button type=\"submit\" class=\"gradient-bg3 form_btn\">Go to Page</button>";
+                            echo "</form>";
+                        echo "</div>";
+                    }
+                ?>
+           </div>
         </div>
 
         <!-- Delete modal -->

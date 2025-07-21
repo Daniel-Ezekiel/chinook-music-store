@@ -58,6 +58,14 @@ div.table_actions {
   margin: 1.5rem 0;
 }
 
+div.table_actions.search_page {
+  width: unset;
+}
+
+div.search_page .form_search {
+  margin: 0;
+}
+
 .form_sort,
 .form_search {
   background-color: rgba(24, 24, 27, 1);
