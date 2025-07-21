@@ -73,7 +73,7 @@
                 $album_id = explode("-", $_GET["id"])[0];
 
                 /*
-                    Check whether artist exists in database. If they exist, upda
+                    Check whether artist exists in database. If they exist, get the artist id for updating album; if not, add new artist to database and use new artist id to update album
                 */
                 $sql_selectArtist = "SELECT ArtistId from artists WHERE Name = \"$artist_name\"";
                 $artists =  $conn->query($sql_selectArtist);
@@ -93,16 +93,15 @@
                     $conn->query($sql_addArtist);
                 }
 
-                
+                // Query to update album with artist id from outcome of the conditional above
                 $sql_updateAlbum = "UPDATE albums SET Title = \"$album_title\", ArtistId = \"$artist_id\" WHERE AlbumId = \"$album_id\"";
-                // echo "<pre>$sql_updateAlbum</pre>";
                 $conn->query($sql_updateAlbum);
 
                 // Managing the updating of tracks by checking if the fields to be used for the update do not have some tracks in the db, then delete those tracks from the db
                 $sql_allTracksInAlbum = "SELECT TrackId, Name FROM tracks WHERE AlbumId = \"$album_id\"";
                 $all_tracksInAlbum = $conn->query($sql_allTracksInAlbum);
 
-                // Remove track if it is not in the list of tracks from the form
+                // Remove track from the DB if it is not in the new list of tracks gotten from the form
                 while($track = $all_tracksInAlbum->fetch_assoc()){
                     $track_id = $track["TrackId"];
                     $is_track_in_form = array_key_exists($track_id, $all_tracks);
@@ -115,13 +114,14 @@
                     }
                 }
                 
+                // For each track in the form, update the album with those tracks
                 foreach($all_tracks as $track_id => $track_name){
                     $track_id = intval($track_id); // changing track id to int so as to use it in a conditional to add a track that does not exist in album
                     
-                    if($track_id != 0){
+                    if($track_id != 0){ // track is an existing track
                         $sql_updateTrack = "UPDATE tracks SET Name = \"$track_name\" WHERE TrackId = \"$track_id\"";
                         $conn->query($sql_updateTrack);
-                    }else {
+                    }else { // track is a new track
                         // Get the current maximum TrackId
                         $sql_getMaxId = "SELECT MAX(TrackId) AS max_id FROM tracks";
                         $result = $conn->query($sql_getMaxId);
@@ -136,7 +136,6 @@
 
                         $sql_addNewTrack = "INSERT INTO tracks (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (\"$track_id\", \"$track_name\", \"$album_id\", \"$random_mediaTypeId\", \"$random_genreId\", \"\", \"$random_milliSecs\", \"$random_bytes\", \"0.99\")";
                         $conn->query($sql_addNewTrack);
-                        // echo "<pre>$sql_updateTrack</pre>";
                     }
                 }
 
@@ -172,9 +171,11 @@
                     $conn->query($sql_addArtist);
                 }
 
+                // Query to add album to the database and tie it to the artist id from the conditional
                 $sql_addAlbum = "INSERT INTO albums (AlbumId, Title, ArtistId) VALUES (\"$album_id\", \"$album_title\", \"$artist_id\")";
                 $conn->query($sql_addAlbum);
 
+                // Add each track from form as a new entry for the new album
                 foreach($all_tracks as $track_num => $track_name){
                     // Get the current maximum TrackId
                     $sql_getMaxId = "SELECT MAX(TrackId) AS max_id FROM tracks";
@@ -252,6 +253,7 @@
                 </div>
 
                 <?php 
+                    // adding the tracks to the form for the update process
                     if(isset($other_tracks)){
                         for($i = 0; $i < count($other_tracks); $i++){
                             $track_number = $i + 2;
@@ -282,7 +284,8 @@
                     </button>
 
                     <button class="gradient-bg3 btn_insert">
-                        Insert Album
+                        <?php isset($_GET["id"]) ? print("Update") : print("Insert"); ?> 
+                        Album
                     </button>
                 </div>
             </form>
@@ -291,6 +294,9 @@
     </main>
 
     <script type="module" src="/project/js/tracks.js"></script>
-    <?php $conn->close() ?>
+    <?php 
+        // Closing the connection
+        $conn->close(); 
+    ?>
 </body>
 </html>
