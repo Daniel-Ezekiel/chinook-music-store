@@ -8,21 +8,14 @@
 </head>
 <body>
     <?php 
+        // Require the file that sets up the connection to the db
+        require_once "helpers/db_connection.php";
+        
         // This line fixes issues with unrecognised characters
         header('Content-Type: text/html; charset=ISO-8859-1');
 
         // Handling previous page link for the back button
         $prev_page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php";
-
-
-        // Variables for connecting to the Chinook DB
-        $host = "localhost";
-        $user = "root";
-        $password = "";
-        $dbname = "chinook";
-
-        // Setting up the connection
-        $conn = new mysqli($host, $user, $password, $dbname);
 
         // Handling the process for showing album details
         if(isset($_GET["id"])){

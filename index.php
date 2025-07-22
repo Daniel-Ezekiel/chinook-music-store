@@ -8,7 +8,10 @@
 </head>
 <body>
     <?php 
-        // THis line fixes issues with unrecognised characters.
+        // Require the file that sets up the connection to the db
+        require_once "helpers/db_connection.php";
+        
+        // This line fixes issues with unrecognised characters.
         header('Content-Type: text/html; charset=ISO-8859-1');
 
         // Pagination setup on each page load

@@ -7,20 +7,15 @@
     <title>Insert Album</title>
 </head>
 <body>
-    <?php    
+    <?php 
+        // Require the file that sets up the connection to the db
+        require_once "helpers/db_connection.php";
+           
         // This line fixes issues with unrecognised characters.   
         header('Content-Type: text/html; charset=ISO-8859-1');
 
         // Get the previous page URL for routing purposes on the back button
         $prev_page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php";
-
-        // Setting up the connection for this page
-        $host = "localhost";
-        $user = "root";
-        $password = "";
-        $dbname = "chinook";
-
-        $conn = new mysqli($host, $user, $password, $dbname);
 
         // Query to get a list of all the artists in the DB for the artist name dropdown
         $sql_allArtists = "SELECT ArtistId, Name as ArtistName FROM artists ORDER BY Name ASC";

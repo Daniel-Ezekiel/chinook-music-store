@@ -8,6 +8,10 @@
 </head>
 <body>
     <?php 
+        // Require the file that sets up the connection to the db
+        require_once "helpers/db_connection.php";
+
+        // This line fixes issues with unrecognised characters
         header('Content-Type: text/html; charset=ISO-8859-1');
 
         // Pagination setup on each page load
@@ -18,15 +22,6 @@
         }
         $page_offset = ($curr_page - 1) * 35;
 
-        //  Connecting to the Chinook Database
-        $host = "localhost";
-        $user = "root";
-        $password = "";
-        $dbname = "chinook";
-
-        // setting up the connection
-        $conn = new mysqli($host, $user, $password, $dbname);
-
         if(isset($_GET["category"]) && isset($_GET["value"])){
             $category = $_GET["category"];
             $value_unformatted = $_GET["value"];
@@ -36,7 +31,7 @@
 
         // sql query to select all rows to determine the max number of pages
         $sql_unformatted = "SELECT albums.AlbumId, albums.Title, artists.Name as ArtistName FROM albums JOIN artists ON albums.ArtistId = artists.ArtistId WHERE $category LIKE \"%$value%\"";
-        // echo "<pre>$sql_unformatted</pre>";
+        
         // sql query to limit the number of rows to 35
         $sql_formatted = "SELECT albums.AlbumId, albums.Title, albums.ArtistId, artists.Name as ArtistName FROM albums JOIN artists ON albums.ArtistId = artists.ArtistId WHERE $category LIKE \"%$value%\" LIMIT $row_count OFFSET $page_offset";
         
