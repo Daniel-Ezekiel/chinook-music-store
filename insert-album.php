@@ -10,6 +10,11 @@
     <?php 
         // Require the file that sets up the connection to the db
         require_once "helpers/db_connection.php";
+        // Require the file that has getArtistId function to manage artists for creating or updating album
+        require_once "helpers/get_artistId.php";
+        // Require the file that has addNewTrack function to add new track to db
+        require_once "helpers/add_new-track.php";
+
            
         // This line fixes issues with unrecognised characters.   
         header('Content-Type: text/html; charset=ISO-8859-1');
@@ -66,29 +71,9 @@
             // Handle update request using the album ID
             if(isset($_GET["id"])){
                 $album_id = explode("-", $_GET["id"])[0];
+                $artist_id = getArtistId($conn, $artist_name);             
 
-                /*
-                    Check whether artist exists in database. If they exist, get the artist id for updating album; if not, add new artist to database and use new artist id to update album
-                */
-                $sql_selectArtist = "SELECT ArtistId from artists WHERE Name = \"$artist_name\"";
-                $artists =  $conn->query($sql_selectArtist);
-                if($artists->num_rows){
-                    while($artist = $artists->fetch_assoc()){
-                        $artist_id = $artist["ArtistId"];
-                    }
-                }else{
-                    // Get the current maximum ArtistId
-                    $sql_getMaxId = "SELECT MAX(ArtistId) AS max_id FROM artists";
-                    $result = $conn->query($sql_getMaxId);
-                    $row = $result->fetch_assoc();
-                    $new_artist_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
-                    $artist_id = $new_artist_id;
-
-                    $sql_addArtist = "INSERT INTO artists (ArtistId, Name) VALUES ($artist_id, \"$artist_name\")";
-                    $conn->query($sql_addArtist);
-                }
-
-                // Query to update album with artist id from outcome of the conditional above
+                // Query to update album with artist id from getArtistId function above
                 $sql_updateAlbum = "UPDATE albums SET Title = \"$album_title\", ArtistId = \"$artist_id\" WHERE AlbumId = \"$album_id\"";
                 $conn->query($sql_updateAlbum);
 
@@ -117,20 +102,7 @@
                         $sql_updateTrack = "UPDATE tracks SET Name = \"$track_name\" WHERE TrackId = \"$track_id\"";
                         $conn->query($sql_updateTrack);
                     }else { // track is a new track
-                        // Get the current maximum TrackId
-                        $sql_getMaxId = "SELECT MAX(TrackId) AS max_id FROM tracks";
-                        $result = $conn->query($sql_getMaxId);
-                        $row = $result->fetch_assoc();
-                        $new_track_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
-                        $track_id = $new_track_id;
-
-                        $random_mediaTypeId = rand(1,5);
-                        $random_genreId = rand(1,25);
-                        $random_milliSecs = rand(190000,380000);
-                        $random_bytes = rand(3900000,12000000);
-
-                        $sql_addNewTrack = "INSERT INTO tracks (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (\"$track_id\", \"$track_name\", \"$album_id\", \"$random_mediaTypeId\", \"$random_genreId\", \"\", \"$random_milliSecs\", \"$random_bytes\", \"0.99\")";
-                        $conn->query($sql_addNewTrack);
+                        addNewTrack($conn, $album_id, $track_name);
                     }
                 }
 
@@ -145,47 +117,17 @@
                 $result = $conn->query($sql_getMaxId);
                 $row = $result->fetch_assoc();
                 $new_album_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
-                $album_id = $new_album_id;
+                $album_id = $new_album_id;                
 
-                // Check if artist exists in DB, then determine id based on outcome of conditional
-                $sql_selectArtist = "SELECT ArtistId from artists WHERE Name = \"$artist_name\"";
-                $artists =  $conn->query($sql_selectArtist);
-                if($artists->num_rows){
-                    while($artist = $artists->fetch_assoc()){
-                        $artist_id = $artist["ArtistId"];
-                    }
-                }else{
-                    // Get the current maximum ArtistId
-                    $sql_getMaxId = "SELECT MAX(ArtistId) AS max_id FROM artists";
-                    $result = $conn->query($sql_getMaxId);
-                    $row = $result->fetch_assoc();
-                    $new_artist_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
-                    $artist_id = $new_artist_id;
+                $artist_id = getArtistId($conn, $artist_name);  
 
-                    $sql_addArtist = "INSERT INTO artists (ArtistId, Name) VALUES ($artist_id, \"$artist_name\")";
-                    $conn->query($sql_addArtist);
-                }
-
-                // Query to add album to the database and tie it to the artist id from the conditional
+                // Query to add album to the database and tie it to the artist id gotten from getArtistId function
                 $sql_addAlbum = "INSERT INTO albums (AlbumId, Title, ArtistId) VALUES (\"$album_id\", \"$album_title\", \"$artist_id\")";
                 $conn->query($sql_addAlbum);
 
                 // Add each track from form as a new entry for the new album
                 foreach($all_tracks as $track_num => $track_name){
-                    // Get the current maximum TrackId
-                    $sql_getMaxId = "SELECT MAX(TrackId) AS max_id FROM tracks";
-                    $result = $conn->query($sql_getMaxId);
-                    $row = $result->fetch_assoc();
-                    $new_track_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
-                    $track_id = $new_track_id;
-                    
-                    $random_mediaTypeId = rand(1,5);
-                    $random_genreId = rand(1,25);
-                    $random_milliSecs = rand(190000,380000);
-                    $random_bytes = rand(3900000,12000000);
-
-                    $sql_addTrack = "INSERT INTO tracks (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (\"$track_id\", \"$track_name\", \"$album_id\", \"$random_mediaTypeId\", \"$random_genreId\", \"\", \"$random_milliSecs\", \"$random_bytes\", \"0.99\")";
-                    $conn->query($sql_addTrack);
+                    addNewTrack($conn, $album_id, $track_name);
                 }
 
                 header("Location: details.php/?id=$album_id");
