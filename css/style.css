@@ -1,6 +1,7 @@
 @import "./variables.css";
 @import "./default.css";
 @import "./table.css";
+@import "./delete-modal.css";
 
 header {
   display: flex;
@@ -151,69 +152,6 @@ select#sort {
 
 .form_pagination .form_btn {
   color: var(--main-text-color);
-}
-
-/* Delete modal styling */
-div.modal_overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100dvh;
-  width: 100dvw;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(0.5rem);
-
-  display: none;
-  place-items: center;
-}
-
-div.modal {
-  margin: 2rem;
-  max-width: 55rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  border-radius: 1rem;
-  padding: 5rem 3rem;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
-  background-color: var(--secondary-bg-color);
-  z-index: 1;
-}
-
-div.modal h5,
-div.modal p {
-  margin: 0;
-  text-align: center;
-}
-
-div.modal h5 {
-  font-size: 3rem;
-  font-weight: 900;
-}
-
-div.modal span {
-  font-weight: 700;
-}
-
-div.modal form {
-  margin-top: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  padding: 0;
-  gap: 3rem;
-}
-
-div.modal .delete-btn {
-  background-color: #dc143c;
-  color: var(--main-text-color);
-}
-
-div.active {
-  display: grid;
-  transition: all ease-in-out 0.4s;
 }
 
 @media screen and (min-width: 768px) {

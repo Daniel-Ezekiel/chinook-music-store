@@ -58,6 +58,12 @@ div.back-btn a {
   color: var(--secondary-text-color);
 }
 
+.delete-btn {
+  background-color: transparent;
+  color: #dc143c;
+  border: 0.25rem solid #dc143c;
+}
+
 p.message {
   margin-top: 5rem;
 }

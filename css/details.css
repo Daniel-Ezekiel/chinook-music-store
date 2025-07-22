@@ -1,5 +1,6 @@
 @import "default.css";
 @import "variables.css";
+@import "./delete-modal.css";
 @import "table.css";
 
 header {
@@ -50,15 +51,22 @@ h3 {
   max-width: 90%;
   margin: 0 auto 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }
 
 div.back-btn a {
   margin-top: 0;
 }
 
-div.update-btn a {
+div.page-actions {
+  display: flex;
+  gap: 2rem;
+}
+
+div.page-actions a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,8 +74,15 @@ div.update-btn a {
   border-radius: 0.5rem;
 
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
   color: #000;
+}
+
+@media screen and (min-width: 540px) {
+  .top-container {
+    flex-direction: row;
+  }
 }
 
 @media screen and (min-width: 1280px) {

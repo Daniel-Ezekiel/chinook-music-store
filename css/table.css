@@ -57,11 +57,7 @@ td a:hover {
   transition: transform ease-in-out 0.4s;
 }
 
-td .delete-btn {
-  background-color: transparent;
-  color: #dc143c;
-  border: 0.25rem solid #dc143c;
-}
+/* td  */
 
 td.actions-cell {
   width: 42rem;
