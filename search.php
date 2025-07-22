@@ -45,13 +45,11 @@
         // getting the total count of all rows and calculating the number of pages
         $total_rows = $conn->query($sql_unformatted)->num_rows;
         $total_pages = ceil($total_rows / $row_count);
-        // echo $total_pages;
 
         // <!-- PHP Code to handle album deletion -->
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $album_id = $_POST["AlbumId"];
 
-            // echo $album_id;
             // query to delete album
             $sql_delete_album = "DELETE FROM albums WHERE AlbumId = $album_id";
             $sql_delete_albumTracks = "DELETE FROM tracks WHERE AlbumId = $album_id";
@@ -95,9 +93,10 @@
         <div class="bottom-container">
            <div class="table-container">
                  <?php 
-                    if($total_pages <= 0){
+                    if($total_pages <= 0){ // handling the occurence where there are no results to display
                         echo "<p class=\"message\">No results to show</p>";
                     }else{
+                        // Displaying the table of albums
                         echo "<table>";
                             echo "<thead class=\"gradient-bg3\">";
                                 echo "<tr>";
@@ -149,6 +148,7 @@
                                 echo "<input type=\"hidden\" name=\"value\" value=\"$value_unformatted\">";
 
                                 echo "<select name=\"page\" id=\"page\">";
+                                    // getting the total number of pages for the pagination feature
                                     for($i = 1; $i <= $total_pages; $i++){
                                         $is_selected = $i == $curr_page ? "selected" : "";
                                         echo "<option value=\"$i\" $is_selected >$i</option>";
@@ -184,6 +184,9 @@
 
 
     <script defer src="/project/js/script.js"></script>
-    <?php $conn->close(); ?>
+    <?php 
+        // Closing the connection
+        $conn->close(); 
+    ?>
 </body>
 </html>

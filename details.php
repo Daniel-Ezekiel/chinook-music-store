@@ -8,33 +8,41 @@
 </head>
 <body>
     <?php 
+        // This line fixes issues with unrecognised characters
         header('Content-Type: text/html; charset=ISO-8859-1');
 
+        // Handling previous page link for the back button
         $prev_page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php";
 
 
+        // Variables for connecting to the Chinook DB
         $host = "localhost";
         $user = "root";
         $password = "";
         $dbname = "chinook";
 
+        // Setting up the connection
         $conn = new mysqli($host, $user, $password, $dbname);
 
+        // Handling the process for showing album details
         if(isset($_GET["id"])){
+            // Grabbing the album id from the GET query parameter
             $album_id = $_GET["id"];
             
-            
+            // Query to selectthe appropriate ablum using the album id from the GET parameter
             $sql_album = "SELECT albums.Title as AlbumTitle, artists.Name as ArtistName from albums JOIN artists ON albums.ArtistId = artists.ArtistId WHERE albums.AlbumId = $album_id";
-            $sql = "SELECT * FROM tracks WHERE AlbumId = $album_id";
+            // Query to select the tracks that match the album id from the GET parameter
+            $sql_tracks = "SELECT * FROM tracks WHERE AlbumId = $album_id";
 
             $album_details = $conn->query($sql_album);
-            $tracks = $conn->query($sql);
+            $tracks = $conn->query($sql_tracks);
         }
     ?>
 
     <header>
         <h1 class="gradient-bg1 gradient-text-color-support">.Chinook Music Store.</h1>
         <?php 
+                // From the database query response, display the album title and artist name
                 while($album_detail = $album_details->fetch_assoc()){
                     echo "<h2 class=\"gradient-bg2 gradient-text-color-support\">";
                         echo "<span>Album Name</span>";
@@ -46,10 +54,7 @@
                         echo "<span>" . $album_detail["ArtistName"] . "</span>";
                     echo "</h3>";
                 }
-        ?>
-        <!-- <button class="gradient-bg2">Insert Album</button> -->
-
-        
+        ?>        
     </header>
 
     <main>
@@ -63,6 +68,7 @@
 
             <div class="update-btn">
                 <?php
+                    // Handle routing to the page for updating album details
                     echo "<a class=\"gradient-bg3\" href=\"/project/insert-album.php?id=" . $album_id . "\">";
                     echo "Update Album</a>";
                 ?>
@@ -83,6 +89,7 @@
                     </thead>
                     <tbody>
                         <?php 
+                            //  Displaying the track information for that particular album
                             while($track = $tracks->fetch_assoc()){
                                 echo "<tr>"; 
                                     echo "<td>";

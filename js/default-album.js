@@ -1,3 +1,4 @@
+// This file holds the information for the default album to be used when the populate button is clicked on the Insert-album page
 export const defaultAlbum = {
   albumTitle: "Work of Art",
   artistName: "Asake",
