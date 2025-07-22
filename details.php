@@ -10,6 +10,8 @@
     <?php 
         // Require the file that sets up the connection to the db
         require_once "helpers/db_connection.php";
+        // Require the file for the deleteAlbum function that deletes an album
+        require_once "helpers/delete_album.php";
         
         // This line fixes issues with unrecognised characters
         header('Content-Type: text/html; charset=ISO-8859-1');
@@ -44,13 +46,7 @@
             // Getting the album id to setup the deletion task
             $album_id = $_POST["AlbumId"];
 
-            // query to delete album
-            $sql_delete_album = "DELETE FROM albums WHERE AlbumId = $album_id";
-            // query to delete tracks for the selected album
-            $sql_delete_albumTracks = "DELETE FROM tracks WHERE AlbumId = $album_id";
-
-            $conn->query($sql_delete_album);
-            $conn->query($sql_delete_albumTracks);
+            deleteAlbum($conn, $album_id);
 
             // Redirect to the page containing the deleted album
             header("Location: /project");
