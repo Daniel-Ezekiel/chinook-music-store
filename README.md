@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Getting Started](#getting-started)
 - [Tools and Technologies](#tools-and-technologies)
 - [Features](#features)
   - [View Albums](#view-albums)
@@ -13,12 +14,30 @@
   - [Delete an Album and its Tracks](#delete-an-album-and-its-tracks)
   - [Inserting a New Album](#inserting-a-new-album)
   - [Update existing Album](#update-existing-album)
+- [Conclusion](#conclusion)
 
 ## Overview
 
 Welcome to the **Chinook Music Store**. This project is a **Database-driven CRUD application** built to allow the Chinook Music Store administrator or staff to manage the catalog/inventory of the store. The Chinook Database delivers a rich dataset and structure around which this project is built.
 
 ![Preview of the Chinook Music Store](img/doc-images/homepage.png)
+
+## Getting Started
+
+To run the Chinook Music Store project locally, you’ll need a few tools installed on your machine. These include:
+
+- a local server environment such as XAMPP, WAMP, or AMPPS, along with
+- PHP version 7 or higher,
+- MySQL for managing the database, and
+- any modern web browser like Chrome, Firefox, or Edge.
+
+Begin by placing the project folder inside the `htdocs` directory if you're using XAMPP or the web root folder for your chosen server. Once the files are in place, start both Apache and MySQL from your local server control panel to activate your environment. If you are using XAMPP, use the xampp control panel to activate your environment.
+
+Next, open your browser and go to `http://localhost/phpmyadmin`. Create a new database and import the `chinook.sql` file included in the project’s `/database` folder. This will populate the database with the required tables and sample data used by the application.
+
+After importing the database, visit `http://localhost/project` in your browser (replace `project` with the appropriate folder name that is on your device). The Chinook Music Store homepage should now load, giving you access to all features including viewing, inserting, updating, and deleting albums and tracks.
+
+No login is required. The application is immediately usable for testing and catalog management.
 
 ## Tools and Technologies
 
@@ -175,3 +194,13 @@ These details include:
 The user can decide whether to remove some tracks totally or add a new track to the pre-existing tracks. The image below shows how this works when we attempt to update the Album by AC/DC titled "For Those About To Rock We Salute You".
 
 ![Update](img/doc-images/update.png)
+
+## Conclusion
+
+This user manual covers all the key features and functionality of the Chinook Music Store web application built using HTML, CSS, JavaScript, PHP and MySQL.
+
+From this user manual, the user of the web application may:
+
+- View, search and sort through the list of Albums,
+- Insert, update or delete an Album
+- Navigate or manage the results being displayed using sort and pagination features.
